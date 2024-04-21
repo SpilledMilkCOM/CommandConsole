@@ -1,6 +1,7 @@
 ﻿# 🖥️ Command Console
 
-Old school console application
+Old school console application that will support static fields that don't scroll and animation.
+The functionality will run commands
 
 ## Overview
 
@@ -13,4 +14,4 @@ Old school console application
 * Create cursor menus for "input"
 * Create mock commands to take time
 * Create loop to issue commands at a predefined rate
-* 
+* Create a rate limiter for commands

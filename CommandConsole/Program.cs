@@ -1,8 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using CommandConsole;
+using CommandConsole.Interaces;
+using Commands.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
-var message = "Hello, World!";
+var _services = new ServiceCollection();
+
+SetupIocCollection(_services);
+
 var messageHeight = 1;
 var column = 0;
 
@@ -13,12 +19,13 @@ dimensions.Write();
 
 // The message starts at 0, 0
 
-text.Write(message, 0, 0);
+text.Text = "Hello, World!";
+text.Write();
 
 // Some animation
 
 for (int row = 0; row < 10; row++) {
-    Console.MoveBufferArea(column, row,  message.Length, messageHeight, column, row + 1);
+    Console.MoveBufferArea(column, row, text.Text.Length, messageHeight, text.Column, row + 1);
 
     dimensions.Write();
 
@@ -51,4 +58,11 @@ while (true) {
     }
 
     Thread.Sleep(100);
+}
+
+void SetupIocCollection(IServiceCollection services) {
+
+    services.AddTransient<IDelayCommand, IDelayCommand>();
+    services.AddTransient<IMasterControlProgram, MasterControlProgram>();
+    services.AddTransient<IConsoleText, ConsoleText>();
 }
