@@ -18,7 +18,9 @@ namespace CommandConsole {
             _commands.Add(command);
         }
 
-        public Task<bool> Execute() {
+        public async Task<bool> ExecuteAsync() {
+
+            var result = true;
 
             // TODO: Run these in parallel
             // TODO: Need a CancellationToken
@@ -26,11 +28,15 @@ namespace CommandConsole {
             while (IsRunning) {
 
                 foreach (var command in _commands) {
-                    command.Execute();
+                    IsRunning = await command.ExecuteAsync();
+
+                    if (!IsRunning) {
+                        break;
+                    }
                 }
             }
 
-            return Task.FromResult(true);
+            return result;
         }
     }
 }

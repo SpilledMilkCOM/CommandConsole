@@ -2,6 +2,6 @@
 
     public interface ICommand {
 
-        Task<bool> Execute();
+        Task<bool> ExecuteAsync();
     }
 }

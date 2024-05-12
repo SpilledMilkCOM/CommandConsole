@@ -5,9 +5,20 @@ using CommandConsole.Interaces;
 using Commands.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
-var _services = new ServiceCollection();
+var services = new ServiceCollection();
 
-SetupIocCollection(_services);
+services.AddCommandConsole();
+
+var provider = services.BuildServiceProvider();
+
+var mcp = provider.GetRequiredService<IMasterControlProgram>();
+var delay = provider.GetRequiredService<IDelayCommand>();
+
+mcp.AddCommand(delay);
+
+var result = await mcp.ExecuteAsync();
+
+
 
 var messageHeight = 1;
 var column = 0;
@@ -58,11 +69,4 @@ while (true) {
     }
 
     Thread.Sleep(100);
-}
-
-void SetupIocCollection(IServiceCollection services) {
-
-    services.AddTransient<IDelayCommand, IDelayCommand>();
-    services.AddTransient<IMasterControlProgram, MasterControlProgram>();
-    services.AddTransient<IConsoleText, ConsoleText>();
 }

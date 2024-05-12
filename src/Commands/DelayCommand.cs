@@ -5,15 +5,15 @@ namespace Commands {
     /// <summary>
     /// This is effectively a "mock" command
     /// </summary>
-    internal class DelayCommand : IDelayCommand {
+    public class DelayCommand : IDelayCommand {
 
-        internal DelayCommand() {
+        public DelayCommand() {
             DelayInMilliseconds = 100;
         }
 
         public int DelayInMilliseconds { get; set; }
 
-        public Task<bool> Execute() {
+        public Task<bool> ExecuteAsync() {
 
             Thread.Sleep(DelayInMilliseconds);
 
