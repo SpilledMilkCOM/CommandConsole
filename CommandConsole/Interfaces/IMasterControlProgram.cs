@@ -1,6 +1,6 @@
 ﻿using Commands.Interfaces;
 
-namespace CommandConsole.Interaces {
+namespace CommandConsole.Interfaces {
 
     internal interface IMasterControlProgram : ICommand {
 

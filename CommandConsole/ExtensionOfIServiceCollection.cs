@@ -1,4 +1,4 @@
-﻿using CommandConsole.Interaces;
+﻿using CommandConsole.Interfaces;
 using Commands;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,8 +8,6 @@ namespace CommandConsole {
 
         public static IServiceCollection AddCommandConsole(this IServiceCollection services) {
 
-            services.AddTransient<IAnimatedTextCommand, AnimatedTextCommand>();
-            services.AddTransient<IConsoleText, ConsoleText>();
             services.AddTransient<IMasterControlProgram, MasterControlProgram>();
 
             services.AddCommands();

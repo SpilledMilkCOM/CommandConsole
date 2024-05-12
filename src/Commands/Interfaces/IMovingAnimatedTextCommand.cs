@@ -2,12 +2,12 @@
 
 namespace CommandConsole.Interaces {
 
-    internal interface IAnimatedTextCommand : ICommand {
+    internal interface IMovingAnimatedTextCommand : ICommand {
 
         double ColumnsPerSecond { get; set; }
 
         double RowsPerSecond { get; set; }
 
-        string Test {  get; set; }
+        string Text {  get; set; }
     }
 }

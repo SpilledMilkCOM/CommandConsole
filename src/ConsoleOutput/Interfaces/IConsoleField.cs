@@ -1,6 +1,6 @@
-﻿namespace CommandConsole.Interaces {
+﻿namespace ConsoleOutput.Interfaces {
 
-    internal interface IConsoleField {
+    public interface IConsoleField {
 
         int Column { get; set; }
 

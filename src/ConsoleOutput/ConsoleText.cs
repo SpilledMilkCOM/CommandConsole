@@ -1,8 +1,8 @@
-﻿using CommandConsole.Interaces;
+﻿using ConsoleOutput.Interfaces;
 
 namespace CommandConsole {
 
-    internal class ConsoleText : IConsoleText {
+    public class ConsoleText : IConsoleText {
 
         public ConsoleText() {
             Text = string.Empty;

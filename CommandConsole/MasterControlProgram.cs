@@ -1,4 +1,4 @@
-﻿using CommandConsole.Interaces;
+﻿using CommandConsole.Interfaces;
 using Commands.Interfaces;
 
 namespace CommandConsole {

@@ -2,6 +2,8 @@
 
     internal class ConsoleDimensions {
 
+        // TODO: Turn this into a command (part of the loop)
+
         public ConsoleDimensions() { }
 
         public void Write() {

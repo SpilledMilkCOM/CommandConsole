@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using CommandConsole;
-using CommandConsole.Interaces;
+using CommandConsole.Interfaces;
 using Commands.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,13 +12,10 @@ services.AddCommandConsole();
 var provider = services.BuildServiceProvider();
 
 var mcp = provider.GetRequiredService<IMasterControlProgram>();
-var delay = provider.GetRequiredService<IDelayCommand>();
 
-mcp.AddCommand(delay);
+InitializeCommands(mcp);
 
 var result = await mcp.ExecuteAsync();
-
-
 
 var messageHeight = 1;
 var column = 0;
@@ -69,4 +66,42 @@ while (true) {
     }
 
     Thread.Sleep(100);
+}
+
+void InitializeCommands(IMasterControlProgram mcp) {
+    var loop = provider.GetRequiredService<ILoopCounterCommand>();
+
+    loop.Row = 10;
+    loop.Column = 20;
+
+    mcp.AddCommand(loop);
+
+    loop = provider.GetRequiredService<ILoopCounterCommand>();
+
+    loop.Row = 10;
+    loop.Column = 40;
+
+    mcp.AddCommand(loop);
+
+    loop = provider.GetRequiredService<ILoopCounterCommand>();
+
+    loop.Row = 20;
+    loop.Column = 30;
+
+    mcp.AddCommand(loop);
+
+    var spinner = provider.GetRequiredService<IAnimatedTextCommand>();
+
+    spinner.Row = 15;
+    spinner.Column = 25;
+    spinner.Frames.AddRange( new List<string> { "|", "/", "-", "\\" });
+    spinner.FramesPerSecond = 4;
+
+    mcp.AddCommand(spinner);
+
+    var delay = provider.GetRequiredService<IDelayCommand>();
+
+    delay.DelayInMilliseconds = 100;
+
+    mcp.AddCommand(delay);
 }
