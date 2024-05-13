@@ -21,7 +21,9 @@ namespace CommandConsole {
 
             // Move the text
 
-            Console.MoveBufferArea(0, 0, Text.Length, 1, Column, Row);
+            if (Column >= 0 && Row >= 0) {
+                Console.MoveBufferArea(0, 0, Text.Length, 1, Column, Row);
+            }
 
             // Move cursor back to 0,0
 

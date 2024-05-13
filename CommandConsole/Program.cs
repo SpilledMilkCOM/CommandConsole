@@ -71,37 +71,32 @@ while (true) {
 void InitializeCommands(IMasterControlProgram mcp) {
     var loop = provider.GetRequiredService<ILoopCounterCommand>();
 
-    loop.Row = 10;
+    loop.Row = 5;
     loop.Column = 20;
-
-    mcp.AddCommand(loop);
-
-    loop = provider.GetRequiredService<ILoopCounterCommand>();
-
-    loop.Row = 10;
-    loop.Column = 40;
-
-    mcp.AddCommand(loop);
-
-    loop = provider.GetRequiredService<ILoopCounterCommand>();
-
-    loop.Row = 20;
-    loop.Column = 30;
 
     mcp.AddCommand(loop);
 
     var spinner = provider.GetRequiredService<IAnimatedTextCommand>();
 
-    spinner.Row = 15;
+    spinner.Row = 10;
     spinner.Column = 25;
     spinner.Frames.AddRange( new List<string> { "|", "/", "-", "\\" });
     spinner.FramesPerSecond = 4;
 
     mcp.AddCommand(spinner);
 
+    var marquee = provider.GetRequiredService<IAnimatedTextCommand>();
+
+    marquee.Text = "Test";
+    marquee.Row = 15;
+    marquee.Column = Console.WindowWidth - marquee.Text.Length;
+    marquee.ColumnsPerSecond = -15;      // To the left.
+
+    mcp.AddCommand(marquee);
+
     var delay = provider.GetRequiredService<IDelayCommand>();
 
-    delay.DelayInMilliseconds = 100;
+    delay.DelayInMilliseconds = 50;
 
     mcp.AddCommand(delay);
 }
